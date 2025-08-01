@@ -10,7 +10,7 @@ def render(df: pd.DataFrame, data_type: str):
 
     # 1. 현재 모드가 '분석 모드'일 때만 대시보드를 보여줍니다.
     if data_type == 'analysis':
-        st.info("현재 활성화된 데이터의 전체적인 통계와 분포를 요약하여 보여줍니다.")
+        st.info("현재 업로드된 데이터의 전체적인 통계와 분포를 요약하여 보여줍니다.")
         st.markdown("---")
 
         # --- 1. 한눈에 보는 핵심 요약 ---
@@ -140,7 +140,7 @@ def render(df: pd.DataFrame, data_type: str):
 
     # 2. 현재 모드가 '분석 모드'가 아닐 경우 파일 업로더를 표시
     else:
-        st.info("'분석 모드'를 활성화하려면 아래에서 파일을 업로드해주세요.")
+        st.info("새로운 데이터를 분석하려면 아래에서 파일을 업로드해주세요.")
 
         uploaded_file = st.file_uploader(
             "분석할 엑셀(csv) 파일을 업로드하세요.",

@@ -96,7 +96,7 @@ def render(df: pd.DataFrame, data_type: str):
     if 'country_processed_file_id' not in st.session_state:
         st.session_state.country_processed_file_id = None
 
-    st.subheader("📁 파일 직접 업로드 (분석 모드 활성화)")
+    st.subheader("📁 파일 직접 업로드")
     uploaded_file = st.file_uploader(
         "분석할 엑셀(xlsx) 또는 CSV 파일을 업로드하세요.",
         type=['xlsx', 'csv'],
@@ -114,7 +114,7 @@ def render(df: pd.DataFrame, data_type: str):
             st.session_state.pending_action = ('UPLOAD_ACTION', new_df)
             st.session_state.country_processed_file_id = uploaded_file.file_id
 
-            st.success(f"'{uploaded_file.name}' 파일이 성공적으로 업로드되었습니다. 분석 모드로 전환합니다...")
+            st.success(f"'{uploaded_file.name}' 파일이 성공적으로 업로드되었습니다. 분석이 시작됩니다...")
             st.rerun()
 
         except Exception as e:
@@ -128,7 +128,7 @@ def render(df: pd.DataFrame, data_type: str):
 
 
     if data_type != 'analysis':
-        st.info("이 대시보드는 '분석 모드'에서만 활성화됩니다. 위에서 파일을 업로드하거나, '논문 검색' 탭에서 데이터를 검색해주세요.")
+        st.info("위에서 파일을 업로드하거나, '논문 검색' 탭에서 데이터를 검색해주세요.")
         return
 
     # --- 여기서부터는 'analysis' 모드일 때만 실행 (기존 코드와 동일) ---

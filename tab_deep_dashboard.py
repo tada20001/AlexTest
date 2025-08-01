@@ -60,7 +60,7 @@ def render(df: pd.DataFrame, data_type: str):
             st.session_state.processed_file_id = uploaded_file.file_id
 
             # 앱 즉시 재실행
-            st.success(f"'{uploaded_file.name}' 파일이 성공적으로 업로드되었습니다. 분석 모드로 전환합니다...")
+            st.success(f"'{uploaded_file.name}' 파일이 성공적으로 업로드되었습니다. 분석이 시작됩니다...")
             st.rerun()
 
         except Exception as e:
