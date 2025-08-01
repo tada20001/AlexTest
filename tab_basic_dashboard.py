@@ -85,6 +85,7 @@ def render(df: pd.DataFrame, data_type: str):
             if 'publication_year' in df.columns and df['publication_year'].notna().any():
                 yearly_counts = df['publication_year'].dropna().astype(int).value_counts().sort_index()
                 fig_yearly = px.bar(yearly_counts, x=yearly_counts.index, y=yearly_counts.values, labels={'x': '발행 연도', 'y': '논문 수'})
+                fig_yearly.update_traces(marker_color='#418cdc' )
                 st.plotly_chart(fig_yearly, use_container_width=True)
 
                 with st.expander("데이터 보기"):
@@ -97,6 +98,7 @@ def render(df: pd.DataFrame, data_type: str):
                 country_series = df['First_Author_Country'].dropna().str.split(';').explode().str.strip()
                 country_counts = country_series.value_counts().nlargest(15)
                 fig_country = px.bar(country_counts, y=country_counts.index, x=country_counts.values, orientation='h', labels={'y': '국가', 'x': '논문 수'})
+                fig_country.update_traces(marker_color='#418cdc')
                 fig_country.update_layout(yaxis={'categoryorder':'total ascending'})
                 st.plotly_chart(fig_country, use_container_width=True)
 
@@ -113,6 +115,8 @@ def render(df: pd.DataFrame, data_type: str):
                 institution_counts = non_blank_institutions.value_counts().nlargest(15)
                 fig_inst = px.bar(institution_counts, y=institution_counts.index, x=institution_counts.values, orientation='h', labels={'y': '연구 기관', 'x': '논문 수'})
                 fig_inst.update_layout(yaxis={'categoryorder':'total ascending'})
+                fig_inst.update_traces(marker_color='#418cdc')
+
                 st.plotly_chart(fig_inst, use_container_width=True)
 
                 with st.expander("데이터 보기"):
@@ -126,6 +130,7 @@ def render(df: pd.DataFrame, data_type: str):
                 topic_counts = df['Primary_Topic_Clean'].value_counts().nlargest(15)
                 fig_topic = px.bar(topic_counts, y=topic_counts.index, x=topic_counts.values, orientation='h', labels={'y': '주요 토픽', 'x': '빈도 수'})
                 fig_topic.update_layout(yaxis={'categoryorder':'total ascending'})
+                fig_topic.update_traces(marker_color='#418cdc')
                 st.plotly_chart(fig_topic, use_container_width=True)
 
                 with st.expander("데이터 보기"):
